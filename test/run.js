@@ -3,12 +3,13 @@
 
   if (typeof require !== "undefined") {
     driver = require("./driver.js");
-    require("./tests.js");
-    require("./tests-harmony.js");
-    require("./tests-es7.js");
-    require("./tests-asyncawait.js");
-    require("./tests-trailing-commas-in-func.js");
-    require("./tests-template-literal-revision.js");
+    require("./tests-ms.js");
+    // require("./tests.js");
+    // require("./tests-harmony.js");
+    // require("./tests-es7.js");
+    // require("./tests-asyncawait.js");
+    // require("./tests-trailing-commas-in-func.js");
+    // require("./tests-template-literal-revision.js");
     acorn = require("../dist/acorn")
     require("../dist/acorn_loose")
   } else {

@@ -124,17 +124,28 @@ pp.parseStatement = function(declaration, topLevel, exports) {
       return this.parseFunctionStatement(node, true)
     }
 
-    let maybeCommandName = this.value, expr = this.parseExpression()
+    console.log(this.type)
+    console.log('parseExpression')
+    let expr = this.parseExpression()
+    console.log(this.type)
+
+    let maybeCommandName = this.value
     if (starttype === tt.name && expr.type === "Identifier" && this.eat(tt.braceL)) {
-      console.log('hello')
       return this.parseCommandStatement(node, maybeCommandName, false)
     }
 
-    let maybeName = this.value, expr = this.parseExpression()
+    let maybeName = this.value
     if (starttype === tt.name && expr.type === "Identifier" && this.eat(tt.colon))
       return this.parseLabeledStatement(node, maybeName, expr)
     else return this.parseExpressionStatement(node, expr)
   }
+}
+
+pp.parseCommandStatement = function (node, name, hasIdentifier) {
+  console.log(this.type)
+  node.name = name
+  node.body = this.parseStatement(this.start)
+  return this.finishNode(node, 'CommandStatement')
 }
 
 pp.parseBreakContinueStatement = function(node, keyword) {
