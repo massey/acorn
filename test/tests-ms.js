@@ -71,3 +71,31 @@ test('param width {\n  type: \'number\'\n  value: 900\n  \nvar x = param()\n}\n'
     }
   ]
 });
+
+test('component base {\n  width: width\n  depth: depth}', {
+  type: 'Program',
+  body: [
+    {
+      type: 'CommandStatement',
+      name: {
+        type: 'Identifier',
+        name: 'component'
+      },
+      id: {
+        type: 'Identifier',
+        name: 'base'
+      },
+      body: {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: 'LabeledStatement'
+          },
+          {
+            type: 'LabeledStatement'
+          }
+        ]
+      }
+    }
+  ]
+})

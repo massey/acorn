@@ -12682,9 +12682,14 @@ testFail("({ obj:20 }) = 42", "Parenthesized pattern (1:0)", {ecmaVersion: 6});
 
 testFail("( { get x() {} } = 0)", "Object pattern can't contain getter or setter (1:8)", {ecmaVersion: 6});
 
-testFail("x \n is y", "Unexpected token (2:4)", {ecmaVersion: 6});
+/* MScript changes.  The following two tests expect tokens after the second
+ * indentifier on the new line. */
 
-testFail("x \n isnt y", "Unexpected token (2:6)", {ecmaVersion: 6});
+// testFail("x \n is y", "Unexpected token (2:4)", {ecmaVersion: 6});
+testFail("x \n is y", "Unexpected token (2:5)", {ecmaVersion: 6});
+
+// testFail("x \n isnt y", "Unexpected token (2:6)", {ecmaVersion: 6});
+testFail("x \n isnt y", "Unexpected token (2:7)", {ecmaVersion: 6});
 
 testFail("function default() {}", "Unexpected token (1:9)", {ecmaVersion: 6});
 

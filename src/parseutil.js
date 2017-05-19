@@ -91,8 +91,6 @@ pp.expect = function(type) {
 // Raise an unexpected token error.
 
 pp.unexpected = function(pos) {
-  var inspect = require('util').inspect
-  console.log(inspect(this.input, {depth: null}))
   this.raise(pos != null ? pos : this.start, "Unexpected token")
 }
 

@@ -133,11 +133,13 @@ pp.parseStatement = function(declaration, topLevel, exports) {
     let maybeName = this.value, expr = this.parseExpression()
 
     /* Maybe a Command Statement. */
-    if (starttype === tt.name && expr.type === "Identifier") {
+    if (starttype === tt.name && expr.type === "Identifier" && maybeName !== "await") {
       if (this.type === tt.braceL) {
         return this.parseCommandStatement(node, expr, false)
-      } else if (this.type === tt.name) {
-        return this.parseCommandStatement(node, expr, true)
+      } else {
+        if (this.type === tt.name && !this.canInsertSemicolon()) {
+          return this.parseCommandStatement(node, expr, true)
+        }
       }
     }
 

@@ -5566,7 +5566,7 @@ test("// Hello, world!\n\n//   Another hello\n42", {
     }
   }
 });
-
+//
 test("if (x) { // Some comment\ndoThat(); }", {
   type: "Program",
   body: [
@@ -11853,7 +11853,7 @@ test("x >= y", {
     }
   }
 });
-
+//
 test("x in y", {
   type: "Program",
   body: [
@@ -20199,7 +20199,7 @@ test("while (true) { continue }", {
     }
   }
 });
-
+//
 test("done: while (true) { continue done }", {
   type: "Program",
   body: [
@@ -23727,7 +23727,7 @@ test("function hello(a) { sayHi(); }", {
     }
   }
 });
-
+//
 test("function hello(a, b) { sayHi(); }", {
   type: "Program",
   body: [
@@ -26018,7 +26018,7 @@ test("(function(){ return/* Multiline\nComment */x; })", {
     }
   }
 });
-
+//
 test("{ throw error\nerror; }", {
   type: "Program",
   body: [
@@ -26633,7 +26633,7 @@ test("foo: 10; foo: 20;", {
     }
   ]
 });
-
+//
 test("if(1)/  foo/", {
   type: "Program",
   body: [
@@ -26784,7 +26784,7 @@ test("a.in / b", {
     }
   ]
 });
-
+//
 // A number of slash-disambiguation corner cases
 test("return {} / 2", {}, {allowReturnOutsideFunction: true});
 test("return\n{}\n/foo/", {}, {allowReturnOutsideFunction: true});
@@ -26824,7 +26824,7 @@ test("{}/=/", {
     }
   ]
 });
-
+//
 test("foo <!--bar\n+baz", {
   type: "Program",
   body: [
