@@ -118,34 +118,43 @@ pp.parseStatement = function(declaration, topLevel, exports) {
     // simply start parsing an expression, and afterwards, if the
     // next token is a colon and the expression was a simple
     // Identifier node, we switch to interpreting it as a label.
+
+    /* MScript Addition
+     * Start parsing an expression and if the next token is another identifier
+     * or a left brace, then it's a command statement. */
   default:
     if (this.isAsyncFunction() && declaration) {
       this.next()
       return this.parseFunctionStatement(node, true)
     }
 
-    console.log(this.type)
-    console.log('parseExpression')
-    let expr = this.parseExpression()
-    console.log(this.type)
+    let maybeName = this.value, expr = this.parseExpression()
 
-    let maybeCommandName = this.value
-    if (starttype === tt.name && expr.type === "Identifier" && this.eat(tt.braceL)) {
-      return this.parseCommandStatement(node, maybeCommandName, false)
+    if (starttype === tt.name && expr.type === "Identifier") {
+      if (this.type === tt.braceL) {
+        return this.parseCommandStatement(node, expr, false)
+      } else if (this.type === tt.name) {
+        return this.parseCommandStatement(node, expr, true)
+      }
     }
 
-    let maybeName = this.value
     if (starttype === tt.name && expr.type === "Identifier" && this.eat(tt.colon))
       return this.parseLabeledStatement(node, maybeName, expr)
     else return this.parseExpressionStatement(node, expr)
   }
 }
 
-pp.parseCommandStatement = function (node, name, hasIdentifier) {
-  console.log(this.type)
-  node.name = name
-  node.body = this.parseStatement(this.start)
-  return this.finishNode(node, 'CommandStatement')
+pp.parseCommandStatement = function(node, expr, hasId) {
+  node.name = expr
+  if (hasId) {
+    let id = this.startNode()
+    id.name = this.value
+    this.next()
+    node.id = this.finishNode(id, "Identifier")
+  }
+  node.body = this.parseBlock()
+  this.finishNode(node, "CommandStatement")
+  return node
 }
 
 pp.parseBreakContinueStatement = function(node, keyword) {

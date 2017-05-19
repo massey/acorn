@@ -103,7 +103,7 @@ export class DestructuringErrors {
 pp.checkPatternErrors = function(refDestructuringErrors, isAssign) {
   if (!refDestructuringErrors) return
   if (refDestructuringErrors.trailingComma > -1)
-    this.raiseRecoverable(refDestructuringErrors.trailingComma, "Comma is not permitted after the rest element")
+    this.Recoverable(refDestructuringErrors.trailingComma, "Comma is not permitted after the rest element")
   let parens = isAssign ? refDestructuringErrors.parenthesizedAssign : refDestructuringErrors.parenthesizedBind
   if (parens > -1) this.raiseRecoverable(parens, "Parenthesized pattern")
 }

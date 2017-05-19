@@ -11,7 +11,7 @@
     // require("./tests-trailing-commas-in-func.js");
     // require("./tests-template-literal-revision.js");
     acorn = require("../dist/acorn")
-    require("../dist/acorn_loose")
+    //require("../dist/acorn_loose")
   } else {
     driver = window;
     acorn = window.acorn;
@@ -57,17 +57,18 @@
       config: {
         parse: acorn.parse
       }
-    },
-    Loose: {
-      config: {
-        parse: acorn.parse_dammit,
-        loose: true,
-        filter: function (test) {
-          var opts = test.options || {};
-          return opts.loose !== false;
-        }
-      }
     }
+    // Removed from original fork.  Not conerned with it.
+    // Loose: {
+    //   config: {
+    //     parse: acorn.parse_dammit,
+    //     loose: true,
+    //     filter: function (test) {
+    //       var opts = test.options || {};
+    //       return opts.loose !== false;
+    //     }
+    //   }
+    // }
   };
 
   function report(state, code, message) {

@@ -40,6 +40,9 @@
         continue
       }
 
+      var util = require('util')
+      console.log(util.inspect(ast, {depth: null}))
+
       if (test.error) {
         if (config.loose) callback("ok", test.code);
         else callback("fail", test.code, "Expected error message: " + test.error + "\nBut parsing succeeded.");
