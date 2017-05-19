@@ -121,7 +121,9 @@ pp.parseStatement = function(declaration, topLevel, exports) {
 
     /* MScript Addition
      * Start parsing an expression and if the next token is another identifier
-     * or a left brace, then it's a command statement. */
+     * or a left brace, then it's a command statement.
+     * Command Statements look like this:
+     * commandName [id] {body}. */
   default:
     if (this.isAsyncFunction() && declaration) {
       this.next()
@@ -130,6 +132,7 @@ pp.parseStatement = function(declaration, topLevel, exports) {
 
     let maybeName = this.value, expr = this.parseExpression()
 
+    /* Maybe a Command Statement. */
     if (starttype === tt.name && expr.type === "Identifier") {
       if (this.type === tt.braceL) {
         return this.parseCommandStatement(node, expr, false)
@@ -153,8 +156,7 @@ pp.parseCommandStatement = function(node, expr, hasId) {
     node.id = this.finishNode(id, "Identifier")
   }
   node.body = this.parseBlock()
-  this.finishNode(node, "CommandStatement")
-  return node
+  return this.finishNode(node, "CommandStatement")
 }
 
 pp.parseBreakContinueStatement = function(node, keyword) {
