@@ -3,8 +3,8 @@
 
   if (typeof require !== "undefined") {
     driver = require("./driver.js");
-    require("./tests-ms.js");
-    // require("./tests.js");
+    // require("./tests-ms.js");
+    require("./tests.js");
     // require("./tests-harmony.js");
     // require("./tests-es7.js");
     // require("./tests-asyncawait.js");

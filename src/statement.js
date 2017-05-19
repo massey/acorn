@@ -150,11 +150,9 @@ pp.parseStatement = function(declaration, topLevel, exports) {
 pp.parseCommandStatement = function(node, expr, hasId) {
   node.name = expr
   if (hasId) {
-    let id = this.startNode()
-    id.name = this.value
-    this.next()
-    node.id = this.finishNode(id, "Identifier")
+    node.id = this.parseIdent()
   }
+  if (this.type !== tt.braceL) this.unexpected()
   node.body = this.parseBlock()
   return this.finishNode(node, "CommandStatement")
 }

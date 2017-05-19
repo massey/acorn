@@ -12744,7 +12744,9 @@ testFail("(10) => 00", "Assigning to rvalue (1:1)", {ecmaVersion: 6});
 
 testFail("(10, 20) => 00", "Assigning to rvalue (1:1)", {ecmaVersion: 6});
 
-testFail("yield v", "Unexpected token (1:6)", {ecmaVersion: 6});
+/* MScript change. */
+// testFail("yield v", "Unexpected token (1:6)", {ecmaVersion: 6});
+testFail("yield v", "Unexpected token (1:7)", {ecmaVersion: 6});
 
 testFail("yield 10", "Unexpected token (1:6)", {ecmaVersion: 6});
 

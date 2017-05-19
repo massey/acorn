@@ -27121,8 +27121,11 @@ testFail("function false() { }",
 testFail("function if() { }",
          "Unexpected token (1:9)");
 
-testFail("a b;",
-         "Unexpected token (1:2)");
+/* MScript Change*/
+// testFail("a b;",
+//          "Unexpected token (1:2)");
+// testFail("a b;",
+//          "Unexpected token (1:3)");
 
 testFail("if.a;",
          "Unexpected token (1:2)");
@@ -27130,8 +27133,11 @@ testFail("if.a;",
 testFail("a if;",
          "Unexpected token (1:2)");
 
+/* MScript change. */
+// testFail("a class;",
+//          "Unexpected token (1:2)");
 testFail("a class;",
-         "Unexpected token (1:2)");
+         "The keyword 'class' is reserved (1:2)");
 
 testFail("break\n",
          "Unsyntactic break (1:0)");
@@ -27187,8 +27193,15 @@ testFail("try { }",
 testFail("‿ = 10",
          "Unexpected character '‿' (1:0)");
 
+/* Mscript change.  You can't have let in a block without braces so this Looks
+ * like the start of a command where the command name is 'let'.  Commands
+ * shouldn't be able to have keywords as names, but in this situation,
+ * it seems that the worse error is the unexpected '=' */
+
+// testFail("if(true) let a = 1;",
+//          "Unexpected token (1:13)");
 testFail("if(true) let a = 1;",
-         "Unexpected token (1:13)");
+         "Unexpected token (1:15)");
 
 testFail("switch (c) { default: default: }",
          "Multiple default clauses (1:22)");
@@ -27501,11 +27514,17 @@ testFail("throw\n10;", "Illegal newline after throw (1:5)");
 
 testFail("const a;", "The keyword 'const' is reserved (1:0)");
 
-testFail("let x;", "Unexpected token (1:4)");
+/* MSCript Change. Let is not a keyword in ES < 6. Looks like the start of
+ * command. */
+// testFail("let x;", "Unexpected token (1:4)");
+testFail("let x;", "Unexpected token (1:5)");
 
 testFail("const a = 1;", "The keyword 'const' is reserved (1:0)");
 
-testFail("let a = 1;", "Unexpected token (1:4)");
+/* MSCript Change. Let is not a keyword in ES < 6. Looks like the start of
+ * command. */
+// testFail("let a = 1;", "Unexpected token (1:4)");
+testFail("let a = 1;", "Unexpected token (1:6)");
 
 testFail("for(const x = 0;;);", "The keyword 'const' is reserved (1:4)");
 

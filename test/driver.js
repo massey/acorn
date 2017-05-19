@@ -40,8 +40,8 @@
         continue
       }
 
-      var util = require('util')
-      console.log(util.inspect(ast, {depth: null}))
+      // var util = require('util')
+      // console.log(util.inspect(ast, {depth: null}))
 
       if (test.error) {
         if (config.loose) callback("ok", test.code);

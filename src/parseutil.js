@@ -91,6 +91,8 @@ pp.expect = function(type) {
 // Raise an unexpected token error.
 
 pp.unexpected = function(pos) {
+  var inspect = require('util').inspect
+  console.log(inspect(this.input, {depth: null}))
   this.raise(pos != null ? pos : this.start, "Unexpected token")
 }
 
@@ -103,7 +105,7 @@ export class DestructuringErrors {
 pp.checkPatternErrors = function(refDestructuringErrors, isAssign) {
   if (!refDestructuringErrors) return
   if (refDestructuringErrors.trailingComma > -1)
-    this.Recoverable(refDestructuringErrors.trailingComma, "Comma is not permitted after the rest element")
+    this.raiseRecoverable(refDestructuringErrors.trailingComma, "Comma is not permitted after the rest element")
   let parens = isAssign ? refDestructuringErrors.parenthesizedAssign : refDestructuringErrors.parenthesizedBind
   if (parens > -1) this.raiseRecoverable(parens, "Parenthesized pattern")
 }
