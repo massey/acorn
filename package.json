@@ -36,9 +36,6 @@
     "build:bin": "rollup -c rollup/config.bin.js",
     "lint": "eslint src/"
   },
-  "bin": {
-    "acorn": "./bin/acorn"
-  },
   "devDependencies": {
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
