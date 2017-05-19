@@ -41,7 +41,7 @@ test('param width {\n  \n}\n', {
   ]
 });
 
-test('param width {\n  var x = 2\n}\n', {
+test('param width {\n  type: \'number\'\n  value: 900\n  \nvar x = param()\n}\n', {
   type: 'Program',
   body: [
     {
@@ -57,7 +57,15 @@ test('param width {\n  var x = 2\n}\n', {
       body: {
         type: 'BlockStatement',
         body: [
-          {}
+          {
+            type: 'LabeledStatement'
+          },
+          {
+            type: 'LabeledStatement'
+          },
+          {
+            type: 'VariableDeclaration'
+          }
         ]
       }
     }

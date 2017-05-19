@@ -58,7 +58,7 @@
         parse: acorn.parse
       }
     }
-    // Removed from original fork.  Not conerned with it.
+    // Removed from original fork.  Don't need it.
     // Loose: {
     //   config: {
     //     parse: acorn.parse_dammit,
