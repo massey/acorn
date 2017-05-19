@@ -29,7 +29,6 @@
     "prepublish": "npm test",
     "test": "node test/run.js && node test/lint.js",
     "pretest": "npm run build",
-    "preinstall": "npm run build",
     "build": "npm run build:main && npm run build:walk && npm run build:bin",
     "build:main": "rollup -c rollup/config.main.js",
     "build:walk": "rollup -c rollup/config.walk.js",
