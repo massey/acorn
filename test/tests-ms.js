@@ -99,3 +99,40 @@ test('component base {\n  width: width\n  depth: depth}', {
     }
   ]
 })
+
+test('component base {\n  component left {}\n}\n', {
+  type: 'Program',
+  body: [
+    {
+      type: 'CommandStatement',
+      name: {
+        type: 'Identifier',
+        name: 'component'
+      },
+      id: {
+        type: 'Identifier',
+        name: 'base'
+      },
+      body: {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: 'CommandStatement',
+            name: {
+              type: 'Identifier',
+              name: 'component'
+            },
+            id: {
+              type: 'Identifier',
+              name: 'left'
+            },
+            body: {
+              type: 'BlockStatement',
+              body: []
+            }
+          }
+        ]
+      }
+    }
+  ]
+})
